@@ -97,6 +97,7 @@ app.layout = html.Div(
                         "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
                         "display": "inline-block",
                         "vertical-align": "top",
+                        "height": "450px",
                     },
                 ),
                 html.Div(
@@ -214,12 +215,12 @@ def update_map(_):
         title="Map of IPL Venues",
         hover_data={"match_count": True, "lat": False, "lon": False},
         color_discrete_sequence=["blue"],
-        zoom=4,
+        zoom=3,
     )
     fig.update_layout(
         mapbox_style="open-street-map",
-        
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        height=360,
+        margin={"r": 0, "t": 2, "l": 0, "b": 0},
     )
     return fig
 
