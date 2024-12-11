@@ -58,126 +58,143 @@ team_losses.columns = ['team', 'matches_lost']
 # Initialize Dash app with Bootstrap theme
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# App layout
 app.layout = html.Div(
     [
         # Main Header
         html.Div(
-            html.H1("IPL Visualizations", className="text-center my-4", style={"color": "#ffffff", "font-size": "36px"}),
+            html.H1(
+                "IPL Visualizations",
+                className="text-center",
+                style={"color": "#4A90E2", "font-size": "36px", "font-weight": "bold"},
+            ),
             style={
-                "background-color": "#1a1a1a",
+                "background-color": "#f5f7fa",
                 "padding": "20px",
+                "margin-bottom": "20px",
                 "border-radius": "10px",
-                "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.5)",
-                "margin": "10px",
+                "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
             },
         ),
         
-        # Map Container with Header
+        # Row 1: Match Locations and Player Performance Metrics
         html.Div(
             [
-                html.H2("Match Locations Hotspot", className="text-center mb-2", style={"color": "#ffffff"}),
-                dcc.Graph(id="world-map", style={"height": "50vh"}),  # Map component
-            ],
-            style={
-                "position": "absolute",
-                "top": "10%",
-                "left": "5%",
-                "width": "40%",
-                "height": "40%",
-                "border": "2px solid #ffffff",
-                "border-radius": "10px",
-                "padding": "10px",
-                "background-color": "rgba(0, 0, 0, 0.7)",
-                "box-shadow": "2px 2px 10px rgba(0,0,0,0.5)",
-            },
-        ),
-        
-        # Player Performance Metrics Container
-        html.Div(
-            [
-                html.H2("Player Performance Metrics", className="text-center mb-2", style={"color": "#ffffff"}),
-                dcc.Tabs(
-                    id="metric-tabs",
-                    value="batting_strike_rate",
-                    children=[
-                        dcc.Tab(label="Top 10 Batting Strike Rate", value="batting_strike_rate"),
-                        dcc.Tab(label="Top 10 Bowling Economies", value="bowling_economy"),
-                        dcc.Tab(label="Top 10 Highest Run Scorers", value="runs"),
-                        dcc.Tab(label="Top 10 Highest Wicket Takers", value="wickets"),
+                html.Div(
+                    [
+                        html.H2(
+                            "Match Locations Hotspot",
+                            className="text-center",
+                            style={"color": "#4A90E2"},
+                        ),
+                        dcc.Graph(id="world-map", style={"height": "300px"}),  # Map component
                     ],
+                    style={
+                        "width": "48%",
+                        "background-color": "#ffffff",
+                        "padding": "20px",
+                        "margin": "10px",
+                        "border-radius": "10px",
+                        "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        "display": "inline-block",
+                        "vertical-align": "top",
+                    },
                 ),
-                dcc.Graph(id="bar-graph", style={"height": "50vh"}),  # Bar graph component
+                html.Div(
+                    [
+                        html.H2(
+                            "Player Performance Metrics",
+                            className="text-center",
+                            style={"color": "#4A90E2"},
+                        ),
+                        dcc.Tabs(
+                            id="metric-tabs",
+                            value="batting_strike_rate",
+                            children=[
+                                dcc.Tab(label="Batting Strike Rate", value="batting_strike_rate"),
+                                dcc.Tab(label="Bowling Economy", value="bowling_economy"),
+                                dcc.Tab(label="Total Runs", value="runs"),
+                                dcc.Tab(label="Total Wickets", value="wickets"),
+                            ],
+                            style={"margin-bottom": "10px"},
+                        ),
+                        dcc.Graph(id="bar-graph", style={"height": "300px"}),  # Bar graph component
+                    ],
+                    style={
+                        "width": "48%",
+                        "background-color": "#ffffff",
+                        "padding": "20px",
+                        "margin": "10px",
+                        "border-radius": "10px",
+                        "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        "display": "inline-block",
+                        "vertical-align": "top",
+                    },
+                ),
             ],
-            style={
-                "position": "absolute",
-                "top": "10%",
-                "right": "5%",
-                "width": "40%",
-                "height": "40%",
-                "border": "2px solid #ffffff",
-                "border-radius": "10px",
-                "padding": "10px",
-                "background-color": "rgba(0, 0, 0, 0.7)",
-                "box-shadow": "2px 2px 10px rgba(0,0,0,0.5)",
-            },
+            style={"width": "100%", "margin-bottom": "20px", "text-align": "center"},
         ),
         
-        # Team Wins and Losses Bar Graph Container with Tabs
+        # Row 2: Team Performance and Spending Trends
         html.Div(
             [
-                html.H2("Team Performance Overview", className="text-center mb-2", style={"color": "#ffffff"}),
-                dcc.Tabs(
-                    id="team-performance-tabs",
-                    value="wins",
-                    children=[
-                        dcc.Tab(label="Team Wins", value="wins"),
-                        dcc.Tab(label="Team Losses", value="losses"),
+                html.Div(
+                    [
+                        html.H2(
+                            "Team Performance Overview",
+                            className="text-center",
+                            style={"color": "#4A90E2"},
+                        ),
+                        dcc.Tabs(
+                            id="team-performance-tabs",
+                            value="wins",
+                            children=[
+                                dcc.Tab(label="Wins", value="wins"),
+                                dcc.Tab(label="Losses", value="losses"),
+                            ],
+                            style={"margin-bottom": "10px"},
+                        ),
+                        dcc.Graph(id="team-performance-bar", style={"height": "300px"}),  # Team Performance Graph
                     ],
+                    style={
+                        "width": "48%",
+                        "background-color": "#ffffff",
+                        "padding": "20px",
+                        "margin": "10px",
+                        "border-radius": "10px",
+                        "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        "display": "inline-block",
+                        "vertical-align": "top",
+                    },
                 ),
-                dcc.Graph(id="team-performance-bar", style={"height": "40vh"}),  # Team Performance Graph
+                html.Div(
+                    [
+                        html.H2(
+                            "Team Spending Trends",
+                            className="text-center",
+                            style={"color": "#4A90E2"},
+                        ),
+                        dcc.Graph(id="line-graph", style={"height": "300px"}),  # Line graph component
+                    ],
+                    style={
+                        "width": "48%",
+                        "background-color": "#ffffff",
+                        "padding": "20px",
+                        "margin": "10px",
+                        "border-radius": "10px",
+                        "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        "display": "inline-block",
+                        "vertical-align": "top",
+                    },
+                ),
             ],
-            style={
-                "position": "absolute",
-                "bottom": "5%",
-                "left": "5%",
-                "width": "40%",
-                "height": "40%",
-                "border": "2px solid #ffffff",
-                "border-radius": "10px",
-                "padding": "10px",
-                "background-color": "rgba(0, 0, 0, 0.7)",
-                "box-shadow": "2px 2px 10px rgba(0,0,0,0.5)",
-            },
-        ),
-
-        # Line Graph Container for Spending Trends
-        html.Div(
-            [
-                html.H2("Team Spending Trends", className="text-center mb-2", style={"color": "#ffffff"}),
-                dcc.Graph(id="line-graph", style={"height": "40vh"}),  # Line graph component
-            ],
-            style={
-                "position": "absolute",
-                "bottom": "5%",
-                "right": "5%",
-                "width": "40%",
-                "height": "40%",
-                "border": "2px solid #ffffff",
-                "border-radius": "10px",
-                "padding": "10px",
-                "background-color": "rgba(0, 0, 0, 0.7)",
-                "box-shadow": "2px 2px 10px rgba(0,0,0,0.5)",
-            },
+            style={"width": "100%", "margin-bottom": "20px", "text-align": "center"},
         ),
     ],
     style={
-        "height": "150vh",
-        "position": "relative",
-        "background-color": "#000000",
-        "background-image": "url('/assets/ipl_trophy.jpg')",  # Replace with your image URL
-        "background-size": "cover",
-        "background-position": "center",
+        "font-family": "Arial, sans-serif",
+        "background-color": "#f5f7fa",
+        "padding": "20px",
+        "text-align": "center",
     },
 )
 
@@ -201,6 +218,7 @@ def update_map(_):
     )
     fig.update_layout(
         mapbox_style="open-street-map",
+        
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
     )
     return fig
@@ -248,7 +266,7 @@ def update_bar_graph(selected_metric):
     )
     return fig
 
-# Callback to update the team wins bar graph
+
 # Callback to update the team wins or losses bar graph
 @app.callback(
     Output("team-performance-bar", "figure"),
@@ -292,7 +310,7 @@ def update_line_graph(_):
         x="year",
         y="amount",
         color="team",
-        title="Total Amount Spent by Teams Over the Years",
+        title="Total Amount Spent by Teams Over the Years in INR from 2013-2022",
         labels={"amount": "Amount Spent", "year": "Year", "team": "Team"},
     )
     fig.update_layout(
