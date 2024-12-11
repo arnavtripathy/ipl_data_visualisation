@@ -63,7 +63,7 @@ app.layout = html.Div(
         # Main Header
         html.Div(
             html.H1(
-                "IPL Visualizations",
+                "IPL Stats Visualizations",
                 className="text-center",
                 style={"color": "#4A90E2", "font-size": "36px", "font-weight": "bold"},
             ),
@@ -97,7 +97,7 @@ app.layout = html.Div(
                         "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
                         "display": "inline-block",
                         "vertical-align": "top",
-                        "height": "450px",
+                        "height": "462px",
                     },
                 ),
                 html.Div(
@@ -185,10 +185,31 @@ app.layout = html.Div(
                         "box-shadow": "0px 4px 6px rgba(0, 0, 0, 0.1)",
                         "display": "inline-block",
                         "vertical-align": "top",
+                        "height": "462px",
                     },
                 ),
             ],
             style={"width": "100%", "margin-bottom": "20px", "text-align": "center"},
+        ),
+
+        # Footer
+        html.Div(
+            [
+                html.P(
+                    "Created by Arnav Tripathy, Trinity College Dublin",
+                    style={"color": "#ffffff", "margin": "0"},
+                ),
+            ],
+            style={
+                "background-color": "#4A90E2",
+                "padding": "10px",
+                "position": "fixed",
+                "bottom": "0",
+                "width": "100%",
+                "text-align": "center",
+                "font-size": "24px",
+                "box-shadow": "0px -2px 4px rgba(0, 0, 0, 0.1)",
+            },
         ),
     ],
     style={
@@ -219,7 +240,7 @@ def update_map(_):
     )
     fig.update_layout(
         mapbox_style="open-street-map",
-        height=360,
+        height=380,
         margin={"r": 0, "t": 2, "l": 0, "b": 0},
     )
     return fig
@@ -316,6 +337,7 @@ def update_line_graph(_):
     )
     fig.update_layout(
         margin={"r": 0, "t": 50, "l": 0, "b": 0},
+        height=380,
         xaxis_title="Year",
         yaxis_title="Amount Spent",
     )
