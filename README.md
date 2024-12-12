@@ -25,4 +25,9 @@ This project was built entirely on python and using [plotly](https://plotly.com/
 - Will work on cleaning the code and making it more modular
 - Open source contributions welcome to enhance/ add features and graphs
 
+## Datasets:
+
+- [IPL complete dataset from Kaggle](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020)
+- [IPL Player Auction Dataset](https://www.kaggle.com/datasets/kalilurrahman/ipl-player-auction-dataset-from-start-to-now) 
+
 
