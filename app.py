@@ -63,7 +63,7 @@ app.layout = html.Div(
         # Main Header
         html.Div(
             html.H1(
-                "IPL Stats Visualizations",
+                "IPL Stats Visualizations - Data upto date till IPL 2024",
                 className="text-center",
                 style={"color": "#4A90E2", "font-size": "36px", "font-weight": "bold"},
             ),
@@ -196,7 +196,7 @@ app.layout = html.Div(
         html.Div(
             [
                 html.P(
-                    "Created by Arnav Tripathy, Trinity College Dublin",
+                    "Created by Arnav Tripathy, Trinity College Dublin. Dataset from Kaggle",
                     style={"color": "#ffffff", "margin": "0"},
                 ),
             ],
