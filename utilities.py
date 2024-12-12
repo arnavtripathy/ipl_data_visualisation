@@ -11,8 +11,7 @@ def extract_id_and_city(data):
     id_city_df = data[['id', 'city']].groupby('city').count().reset_index()
     id_city_df.rename(columns={'id': 'match_count'}, inplace=True)
 
-    # Add coordinates for cities (you need to provide this mapping based on your dataset)
-    # Example format (you will need to complete this list for all cities in your dataset):
+    # Add coordinates for cities
     city_coords = {
         "Bangalore": {"lat": 12.9716, "lon": 77.5946},
         "Chandigarh": {"lat": 30.7333, "lon": 76.7794},
