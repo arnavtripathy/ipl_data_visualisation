@@ -55,6 +55,19 @@ losers_data = pd.read_csv(losers_path)
 team_losses = losers_data['loser'].value_counts().reset_index()
 team_losses.columns = ['team', 'matches_lost']
 
+
+#Extract toss wins and losses
+toss_path = 'ipl/toss_matches.csv'
+tosses_data = pd.read_csv(toss_path)
+# Calculate toss win/loss percentages
+toss_win_stats = tosses_data['toss_win'].value_counts(normalize=True).reset_index()
+toss_win_stats.columns = ['result', 'percentage']
+toss_win_stats['label'] = toss_win_stats['result'].map(
+    {True: "Won Toss and Match", False: "Won Toss but Lost Match"}
+)
+toss_win_stats['percentage'] *= 100
+
+
 # Initialize Dash app with Bootstrap theme
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -151,6 +164,7 @@ app.layout = html.Div(
                             children=[
                                 dcc.Tab(label="Wins", value="wins"),
                                 dcc.Tab(label="Losses", value="losses"),
+                                dcc.Tab(label="Toss Impact", value="toss_impact")
                             ],
                             style={"margin-bottom": "10px"},
                         ),
@@ -305,6 +319,23 @@ def update_team_performance_bar(selected_tab):
         y_label = "Matches Lost"
         color = "matches_lost"
         title = "Number of Matches Lost by Each Team"
+    elif selected_tab == "toss_impact":
+        # Create Donut Chart for Toss Impact
+        fig = px.pie(
+            toss_win_stats,
+            names="label",
+            values="percentage",
+            title="Impact of Toss Wins on Match Results",
+            hole=0.5,  # Makes it a donut chart
+        )
+        fig.update_traces(
+            textinfo="percent+label",  # Display both percentage and label
+        )
+        fig.update_layout(
+            margin={"r": 0, "t": 50, "l": 0, "b": 0},
+            height=300,
+        )
+        return fig
 
     # Create the bar graph
     fig = px.bar(
