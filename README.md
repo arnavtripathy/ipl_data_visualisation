@@ -8,7 +8,7 @@ This project was built entirely on python and using [plotly](https://plotly.com/
 
 ## Plots:
 
-- Match hotspot
+- Match hotspot based on number of matches played in the city.
 - Player performance metrics - Top strike rates, bowling economies, runs scored and wickets taken
 - Team performance metrics - Wins, losses and toss impact for teams
 - IPL auction data - Money spent by teams in IPL auction throughout the years
